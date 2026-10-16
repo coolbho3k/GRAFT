@@ -1,0 +1,31 @@
+\section{Related work}
+\label{sec:related}
+
+\paragraph{Compressing low-precision releases.} We know of no method that compresses an FP4-native checkpoint below 4
+bits per weight by exploiting its grid. Tied Trit-Planes~\citep{grella2026trit} requantizes DeepSeek-V4-Flash's MXFP4
+experts to about 4 bits and treats the dequantized weights as continuous. ReQuant~\citep{requant2026} refines codes on
+a fixed grid without lowering the bit width, and \citet{zhao2025deepseek} requantize FP8 DeepSeek releases to
+3--4-bit GGUF types. Lossless compression gains almost nothing on MXFP4 and NVFP4 codes~\citep{heilper2025lossless},
+which is consistent with our entropy measurements.
+
+\paragraph{Trellis and vector quantization.} GRAFT builds on QTIP's bitshift trellis with computed
+codebooks~\citep{tseng2024qtip} as implemented in EXL3~\citep{exllamav3}, on LDLQ and incoherence
+processing~\citep{chee2023quip,tseng2024quipsharp}, and on GPTQ-style error
+feedback~\citep{frantar2022obc,frantar2023gptq}. Vector and additive
+codebooks~\citep{egiazarian2024aqlm,vanbaalen2024gptvq,liu2024vptq,malinovskii2024pvtuning}, Hadamard rotation with
+Gaussian-optimal grids~\citep{higgs2025} and fractional-bit allocation for Gaussianized weights~\citep{qpalette2025}
+all assume a continuous source. Lattice VQ collapses without rotation on BF16 models~\citep{llvq2026}, which is why a
+result without rotation is specific to sources already on a grid. Grid-aligned trellis quantizers exist for
+uniform integer grids, including classical TCQ~\citep{marcellin1990tcq}, the dependent quantization of the NNR
+standard~\citep{nnr2022} and CCQ~\citep{ccq2025}. XOR-Trellis~\citep{que2026xortrellis} quantizes BF16 checkpoints
+using a trellis that decodes to FP4 values with E5M3 group scales. Work on FP4 formats finds that rotations interact
+badly with block scales~\citep{egiazarian2025mrgptq,shao2025blockrot,jokar2026inversion}.
+
+\paragraph{Objectives, outliers and allocation.} GRAFT's gated objective is the special case of
+Kronecker-factored Hessians~\citep{fastkron2026} with a per-expert, one-sided, diagonal output factor. Such a factor
+cancels in plain GPTQ~\citep{kronq2026}, whereas GRAFT applies it through the trellis cost. Outliers are usually
+stored exactly beside the code~\citep{dettmers2023spqr,kim2023squeezellm,owq2024,icquant}. GRAFT instead gives the
+codebook itself a power-of-two range, which a grid-aligned code can afford because large MXFP4 weights are themselves
+powers of two times E2M1 values, and the stored code stays one bitstream. Sensitivity-driven mixed-precision
+allocation~\citep{dong2019hawq,higgs2025} is orthogonal to the code. In our experiment on this model, moving bits between
+experts according to our expert-error estimates did not improve model-level quality (\cref{sec:experiments}).

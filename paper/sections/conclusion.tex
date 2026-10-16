@@ -1,0 +1,33 @@
+\section{Limitations and conclusion}
+\label{sec:conclusion}
+
+\paragraph{Limitations.} We report results for one model; results on gpt-oss~\citep{gptoss} are coming soon. We
+evaluate GRAFT at 3 bits per weight. Its tile-level advantage grows with the rate (\cref{fig:rd}), but we do not
+evaluate higher rates end to end here. Model-level metrics use 400 windows from two text corpora, and we do not report
+capability benchmarks. We do not measure throughput or latency, and the reference-kernel evaluation decodes each
+layer's experts to MXFP4 operands before the matrix multiply.
+
+\paragraph{Decode cost and speed.} Like EXL3 and QTIP~\citep{exllamav3,tseng2024qtip}, GRAFT decodes on the
+general-purpose cores rather than on the tensor cores. For each weight, the decoder extracts the 16-bit state (a shift
+and a mask), computes the hash (an integer multiply and a byte-sum dot product) and applies the value map (a fused
+multiply-add and half an FP4 conversion). On Blackwell (B200) this takes about \final{K-B200-OFF} instructions in an
+unflagged block and \final{K-B200-ON} with a flag, against \final{K-B200-OCT} for the per-matrix octave codebook.
+The smaller representation reduces weight traffic, but whether this decode work is hidden and the saving turns into
+throughput depends on overlapping the decode with memory access. Where decode itself sets the speed, as on HBM GPUs such as B200, a throughput model puts GRAFT's expert
+products at an estimated 2--3$\times$ the time of native MXFP4, so on these GPUs its benefit is capacity. The decode
+cost cannot be traded away cheaply. On \final{DEC-N} DeepSeek matrices (\final{DEC-HI-N} for the bit-sliced
+decoders), every cheaper state-to-value map we screened (top-bit and register tables, two weights per state, linear and
+bit-sliced decoders) raised weight error by \final{DEC-RANGE}, whereas a random permutation of GRAFT's own table raised
+it by \final{DEC-PERM}. The byte-sum hash spreads the successors of a state better than random draws do. Hardware support
+for trellis decoding in the tensor-core operand path, like today's support for 2:4 sparsity metadata and MX block
+scales~\citep{rouhani2023mx}, would remove this cost for EXL3 and QTIP as well as for GRAFT.
+
+\paragraph{Conclusion.} An MXFP4 checkpoint is a discrete source, and a quantizer that keeps the grid instead of
+rotating it away can go well below the Gaussian-source curve for which rotation-based, Gaussian-matched coders are
+designed. GRAFT does this inside EXL3's
+trellis by changing only the value map. The new map applies an E2M1 conversion to EXL3's hash, with a one-bit MX
+scale per block and a power-of-two tail at the hash centre, so the bulk decodes to MXFP4 blocks again. On
+DeepSeek-V4.1-Flash, GRAFT has \final{X-MEAN2}$\times$ EXL3's held-out expert error at 3 bits, and its MXFP4 blocks
+run on the model's own MXFP4 kernels with a per-column output scale and a sparse tail correction added. GRAFT
+therefore stores the experts in fewer than 4 bits per weight while the bulk of the computation stays in the format the
+model was trained in.

@@ -1,0 +1,16 @@
+\begin{abstract}
+Frontier mixture-of-experts (MoE) models increasingly release their routed experts only in MXFP4 (4.25 bits per
+weight). Current methods that go below this rate treat the experts as continuous weights; EXL3, for example, rotates
+them with
+random Hadamard transforms and codes them with a Gaussian-matched trellis. An MXFP4 matrix, however, is a discrete
+source on a known grid, and at 3 bits its memoryless distortion--rate function is about \final{DS-BOUND3-1}$\times$
+that of a Gaussian source of the same variance. We present GRAFT (GRid-Aligned FP4 Trellis), a 3-bit trellis code that
+keeps EXL3's trellis and state hash, drops the rotation and uses a grid-aligned value map, so that it decodes to MXFP4
+blocks with a per-column output scale and a sparse tail correction. On the routed experts of DeepSeek-V4.1-Flash at
+\final{X-BPW} bits per weight, GRAFT's held-out expert error is \final{X-MEAN2}$\times$ that of EXL3 at 3 bits
+(lower on all but \final{X-WORSE} of the \final{X-N} experts with held-out rows) and \final{ATTR-G} that of EXL3
+refitted with GRAFT's own fitting objective. Its excess NLL over the native model is \final{G-NLL} nats, against
+\final{E-NLL} for EXL3, and \final{R-NLL} when its MXFP4 blocks run through the model's own MXFP8$\times$MXFP4 expert
+kernel. The smaller representation reduces weight traffic, but whether it also raises throughput depends on
+overlapping the decode with memory access, which we do not measure here.
+\end{abstract}

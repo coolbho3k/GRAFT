@@ -1,0 +1,84 @@
+\documentclass[10pt,twocolumn]{article}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage[letterpaper,textwidth=6.75in,textheight=9in,top=1in,columnsep=0.25in]{geometry}
+\usepackage{amsmath}
+\usepackage{booktabs,multirow,array,tabularx}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{subcaption}
+\captionsetup{font=small,labelfont=bf,skip=4pt}   %
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,calc}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+\def\UrlBreaks{\do\/\do-\do.}          %
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\newif\ifanon
+\anonfalse
+\newif\ifdraftmarks
+\draftmarksfalse
+
+\ifdraftmarks
+  \newcommand{\prelim}[1]{\textcolor{blue}{#1}}
+  \newcommand{\est}[1]{\textcolor{blue}{#1\textsuperscript{\,est}}}
+\else
+  \newcommand{\prelim}[1]{#1}
+  \newcommand{\est}[1]{#1\textsuperscript{\,est}}
+\fi
+\newcommand{\final}[1]{\fcolorbox{red}{red!5}{\textcolor{red}{\fontsize{6.5}{7}\selectfont\ttfamily #1}}}
+\makeatletter
+\newcommand{\finalval}[2]{\@namedef{finalval@#1}{#2}}
+\let\finalbox\final
+\renewcommand{\final}[1]{\@ifundefined{finalval@#1}{\finalbox{#1}}%
+  {\ifdraftmarks\textcolor{ForestGreen}{\@nameuse{finalval@#1}}\else\@nameuse{finalval@#1}\fi}}
+\makeatother
+\InputIfFileExists{final_values.tex}{}{}
+\newcommand{\placeholderfig}[3]{%
+  \fcolorbox{red}{red!3}{\parbox{0.95\linewidth}{\centering\vspace{0.6em}
+  {\color{red}\bfseries\small PLACEHOLDER FIGURE \texttt{#1}}\\[0.3em]
+  {\small #2}\\[0.4em]
+  \parbox{0.9\linewidth}{\raggedright\footnotesize\textbf{Data needed:} #3}\vspace{0.6em}}}}
+\newcommand{\repolink}{\ifanon\textit{[link withheld for review]}\else\textit{[repository URL placeholder]}\fi}
+
+\newcommand{\bpw}{\,bpw}
+\newcommand{\graft}{GRAFT}
+\newcommand{\exl}{EXL3}
+\newcommand{\eg}{e.g.,\ }
+\newcommand{\ie}{i.e.,\ }
+\newcommand{\figref}[1]{\cref{#1}}
+
+\title{\textbf{GRAFT: Grid-Aligned FP4 Trellis Quantization\\for FP4-Native Language Models}\\[0.4em]
+\large Sub-4-bit storage of MXFP4 checkpoints that decodes to MXFP4 blocks}
+\ifanon
+  \author{Anonymous authors}
+\else
+  \author{Emi Huang}
+\fi
+\ifdraftmarks
+  \date{Draft --- \textcolor{blue}{blue} = preliminary, \fcolorbox{red}{red!5}{\textcolor{red}{\scriptsize red box}} = pending final experiments}
+\else
+  \date{}
+\fi
+
+\begin{document}
+\maketitle
+
+\input{sections/abstract}
+\input{sections/intro}
+\input{sections/background}
+\input{sections/theory}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/related}
+\input{sections/conclusion}
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\end{document}

@@ -1,0 +1,17 @@
+\section{Background}
+\label{sec:background}
+
+\paragraph{MXFP4 MoEs.} The OCP microscaling formats~\citep{rouhani2023mx} store 32 consecutive values as low-bit
+elements that share one E8M0 (power-of-two) scale, and MXFP4 uses E2M1 elements. DeepSeek-V4.1-Flash has 40 MoE
+layers, each with 384 routed experts (top-6 routing, hidden size 5,120, expert intermediate size 2,304). Only the
+routed experts are stored in MXFP4, and only they are requantized in this work.
+
+\paragraph{Trellis-coded quantization.} TCQ~\citep{marcellin1990tcq} decodes reproduction values through a
+finite-state machine. QTIP~\citep{tseng2024qtip} combines a \emph{bitshift} trellis, whose state is the last $L$ bits
+of the stream, with a \emph{computed} codebook. EXL3~\citep{exllamav3} uses $L=16$ and codes each 16$\times$16 tile,
+in tensor-core order, as one tail-biting ring of 256 steps. Its ``MUL1'' codebook is the byte sum
+$h(s)=\sum_b\mathrm{byte}_b(s\cdot\texttt{0x83DCD12D}\bmod 2^{32})$ of the state $s$, an approximately Gaussian
+integer in $[0,1020]$ with mean 510. EXL3 first rotates the weights with random Hadamard
+transforms~\citep{chee2023quip,tseng2024quipsharp} and then rounds them as in
+GPTQ/LDLQ~\citep{frantar2023gptq,chee2023quip}, quantizing the rows in sequence with error feedback through the LDL
+factors of $H=\mathbb{E}[xx^\top]$ and a Viterbi search per 16-row block.

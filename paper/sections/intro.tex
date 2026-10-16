@@ -1,0 +1,53 @@
+\section{Introduction}
+\label{sec:intro}
+
+DeepSeek-V4-Flash and V4.1-Flash store every routed expert in MXFP4~\citep{rouhani2023mx,deepseekv4}, which encodes
+the weights as 4-bit E2M1 codes $\{0,\pm0.5,\pm1,\pm1.5,\pm2,\pm3,\pm4,\pm6\}$ with one power-of-two scale per 32
+inputs, or 4.25 bits per weight. Because the experts hold almost all of the parameters, serving these models in less
+memory requires going below the native format. For most of these models no higher-precision checkpoint is published,
+and since the experts are trained with MXFP4 in the loop, such a checkpoint may not exist at
+all~\citep{deepseekv4,kimik3,mimov25fp4}. Current practice nonetheless treats the MXFP4 weights as continuous.
+EXL3~\citep{exllamav3}, a streamlined implementation of QTIP~\citep{tseng2024qtip}, dequantizes the experts, rotates
+them with random Hadamard transforms until they look i.i.d.\ Gaussian, and codes them with a Gaussian-matched trellis.
+GGUF builds below 4 bits instead re-round the dequantized weights onto llama.cpp's block grids.
+
+Rotation is an appropriate prior for BF16 weights but not for MXFP4 weights. Every nonzero MXFP4 weight in a column
+is an E2M1 value times a power of two, and because E2M1 is nearly closed under doubling and halving, the weights of a
+column lie on a small union of grids. Such a source has finite entropy (\final{ENTROPY-RANGE} bits per weight on
+DeepSeek-V4.1-Flash), and its memoryless distortion--rate function lies far below that of a Gaussian source, the
+curve that Gaussian-matched coders are designed for. Rotation preserves the grid structure but moves it into the joint
+distribution of each 128-coordinate Hadamard block, where a coder that models the rotated coordinates as i.i.d.\
+Gaussian does not exploit it.
+
+GRAFT keeps the parts of EXL3 that do not depend on rotation (the 16-bit bitshift trellis, the tile layout, the
+hashed state-to-value map and the error-feedback encoder) but decodes to MXFP4 blocks. It drops the rotation
+and maps EXL3's hash through one fused multiply-add and the GPU's E2M1 conversion, so that every 32-input block of a
+column decodes to E2M1 values times one power of two. Each block carries a one-bit flag, which is the block's MX scale
+and halves the block where the source sits an octave lower. A small band of states at the hash centre decodes to a
+power-of-two ladder for outlier weights, and the decoder applies these values as an exact sparse correction. Columns
+are scaled by a power of two and a fitted fp16 factor, and every matrix is coded at the same rate of 3 bits per
+weight.
+
+\paragraph{Contributions.}
+\begin{enumerate}[leftmargin=1.4em,itemsep=1pt,topsep=2pt]
+\item \textbf{Grid-aware sub-native compression.} To our knowledge, GRAFT is the first method that compresses
+FP4-native checkpoints below 4 bits per weight by exploiting their grid. Prior work on these checkpoints stays at about
+4 bits and treats the weights as continuous~\citep{grella2026trit,requant2026}.
+\item \textbf{A discrete-source rate--distortion analysis} of block-scaled FP4 weights. At 3 bits the memoryless
+distortion--rate function of DeepSeek's weights is about \final{DS-BOUND3-1}$\times$ that of a Gaussian source, for
+which Gaussian-matched rotation-based coders are designed. The source is close to memoryless in our measurements,
+so we use the i.i.d.\ function as a reference (\cref{sec:theory}).
+\item \textbf{A trellis code that decodes to the source's own format.} Grid-aligned trellis quantizers exist for
+uniform integer grids~\citep{marcellin1990tcq,nnr2022,ccq2025} and for FP4 values~\citep{que2026xortrellis}.
+GRAFT decodes to OCP MXFP4 blocks on the grid of the checkpoint it compresses, with power-of-two block scales, a
+per-column output scale and a sparse correction. The block-scaled product therefore runs on
+existing MX tensor-core GEMMs, including the reference model's own expert kernel, with only the output scale and the
+sparse correction added (\cref{sec:method}).
+\item \textbf{Results on DeepSeek-V4.1-Flash} for all 15,360 routed experts, compared with EXL3 at 3 bits at the
+expert level and at the model level (excess NLL, KL and top-1 agreement on held-out text). Ablations separate the
+code from the fitting objective by refitting EXL3 with GRAFT's objective, and they compare block flags with a
+per-matrix octave codebook, a flat rate with a per-matrix rate allocation, and the trellis with 3-bit scalar codebooks
+(\cref{sec:experiments}).
+\end{enumerate}
+\ifdraftmarks\noindent\textit{Draft status.} Blue numbers exist and are preliminary; red boxes mark the model-level
+evaluation of GRAFT in progress.\fi

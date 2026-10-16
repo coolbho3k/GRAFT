@@ -1,0 +1,303 @@
+\begin{thebibliography}{42}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Arimoto(1972)]{arimoto1972}
+Suguru Arimoto.
+\newblock An algorithm for computing the capacity of arbitrary discrete
+  memoryless channels.
+\newblock \emph{IEEE Transactions on Information Theory}, 18\penalty0
+  (1):\penalty0 14--20, 1972.
+
+\bibitem[Birnick and Saab(2026)]{fastkron2026}
+Johann Birnick and Rayan Saab.
+\newblock {FastKron}: Efficient quantization with {Kronecker}-factored
+  {Hessians}.
+\newblock arXiv:2608.06291, 2026.
+
+\bibitem[Blahut(1972)]{blahut1972}
+Richard~E. Blahut.
+\newblock Computation of channel capacity and rate-distortion functions.
+\newblock \emph{IEEE Transactions on Information Theory}, 18\penalty0
+  (4):\penalty0 460--473, 1972.
+
+\bibitem[Chee et~al.(2023)Chee, Cai, Kuleshov, and De~Sa]{chee2023quip}
+Jerry Chee, Yaohui Cai, Volodymyr Kuleshov, and Christopher De~Sa.
+\newblock {QuIP}: 2-bit quantization of large language models with guarantees.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2023.
+
+\bibitem[Cover and Thomas(2006)]{cover2006}
+Thomas~M. Cover and Joy~A. Thomas.
+\newblock \emph{Elements of Information Theory}.
+\newblock Wiley, 2nd edition, 2006.
+
+\bibitem[{DeepSeek-AI} et~al.(2026){DeepSeek-AI}, Xu, Lin, Xue, Wang, Xu,
+  et~al.]{deepseekv4}
+{DeepSeek-AI}, Anyi Xu, Bangcai Lin, Bing Xue, Bingxuan Wang, Bingzheng Xu,
+  et~al.
+\newblock {DeepSeek-V4}: Towards highly efficient million-token context
+  intelligence.
+\newblock arXiv:2606.19348, 2026.
+
+\bibitem[Dettmers et~al.(2023)Dettmers, Svirschevski, Egiazarian, Kuznedelev,
+  Frantar, Ashkboos, Borzunov, Hoefler, and Alistarh]{dettmers2023spqr}
+Tim Dettmers, Ruslan Svirschevski, Vage Egiazarian, Denis Kuznedelev, Elias
+  Frantar, Saleh Ashkboos, Alexander Borzunov, Torsten Hoefler, and Dan
+  Alistarh.
+\newblock {SpQR}: A sparse-quantized representation for near-lossless {LLM}
+  weight compression.
+\newblock arXiv:2306.03078, 2023.
+
+\bibitem[Dong et~al.(2019)Dong, Yao, Gholami, Mahoney, and
+  Keutzer]{dong2019hawq}
+Zhen Dong, Zhewei Yao, Amir Gholami, Michael Mahoney, and Kurt Keutzer.
+\newblock {HAWQ}: {Hessian} {AW}are quantization of neural networks with
+  mixed-precision.
+\newblock In \emph{ICCV}, 2019.
+
+\bibitem[Egiazarian et~al.(2024)Egiazarian, Panferov, Kuznedelev, Frantar,
+  Babenko, and Alistarh]{egiazarian2024aqlm}
+Vage Egiazarian, Andrei Panferov, Denis Kuznedelev, Elias Frantar, Artem
+  Babenko, and Dan Alistarh.
+\newblock Extreme compression of large language models via additive
+  quantization.
+\newblock In \emph{Proceedings of the 41st International Conference on Machine
+  Learning (ICML)}, 2024.
+
+\bibitem[Egiazarian et~al.(2025)Egiazarian, Castro, Kuznedelev, Panferov,
+  Kurtic, Pandit, et~al.]{egiazarian2025mrgptq}
+Vage Egiazarian, Roberto~L. Castro, Denis Kuznedelev, Andrei Panferov, Eldar
+  Kurtic, Shubhra Pandit, et~al.
+\newblock Bridging the gap between promise and performance for microscaling
+  {FP4} quantization.
+\newblock arXiv:2509.23202, 2025.
+
+\bibitem[Frantar et~al.(2022)Frantar, Singh, and Alistarh]{frantar2022obc}
+Elias Frantar, Sidak~Pal Singh, and Dan Alistarh.
+\newblock Optimal brain compression: A framework for accurate post-training
+  quantization and pruning.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2022.
+
+\bibitem[Frantar et~al.(2023)Frantar, Ashkboos, Hoefler, and
+  Alistarh]{frantar2023gptq}
+Elias Frantar, Saleh Ashkboos, Torsten Hoefler, and Dan Alistarh.
+\newblock {GPTQ}: Accurate post-training quantization for generative
+  pre-trained transformers.
+\newblock In \emph{International Conference on Learning Representations}, 2023.
+
+\bibitem[Fu et~al.(2025)Fu, Zhao, Ding, Yu, Li, Tang, and Wang]{fu2025eaquant}
+Zhongqian Fu, Tianyi Zhao, Ning Ding, Xianzhi Yu, Xiaosong Li, Yehui Tang, and
+  Yunhe Wang.
+\newblock {EAQuant}: Enhancing post-training quantization for {MoE} models via
+  expert-aware optimization.
+\newblock arXiv:2506.13329, 2025.
+
+\bibitem[Grella(2026)]{grella2026trit}
+Matteo Grella.
+\newblock Tied trit-planes: Constraining {PTQTP} to a uniform nine-level
+  quantizer, with a persistent folded format for disk-streamed
+  mixture-of-experts serving.
+\newblock arXiv:2608.08910, 2026.
+
+\bibitem[Gu(2026)]{gu2026routeflip}
+Parvel Gu.
+\newblock Detecting a route flip is easier than knowing whether to fix it:
+  Causal route-mediated damage in quantized mixture-of-experts.
+\newblock \emph{arXiv preprint arXiv:2608.11212}, 2026.
+
+\bibitem[Heilper and Singer(2025)]{heilper2025lossless}
+Anat Heilper and Doron Singer.
+\newblock Lossless compression of neural network components: Weights,
+  checkpoints, and {K/V} caches in low-precision formats.
+\newblock arXiv:2508.19263, 2025.
+
+\bibitem[Jokar(2026)]{jokar2026inversion}
+Ehsan Jokar.
+\newblock Transforms for {LLM} quantization: The great inversion and format
+  co-design.
+\newblock arXiv:2608.25188, 2026.
+
+\bibitem[Kim et~al.(2024)Kim, Hooper, Gholami, Dong, Li, Shen, Mahoney, and
+  Keutzer]{kim2023squeezellm}
+Sehoon Kim, Coleman Hooper, Amir Gholami, Zhen Dong, Xiuyu Li, Sheng Shen,
+  Michael~W. Mahoney, and Kurt Keutzer.
+\newblock {SqueezeLLM}: Dense-and-sparse quantization.
+\newblock In \emph{International Conference on Machine Learning}, 2024.
+
+\bibitem[{Kimi Team}(2026)]{kimik3}
+{Kimi Team}.
+\newblock Kimi {K3}: Open frontier intelligence, 2026.
+\newblock MXFP4 expert weights; quantization-aware training throughout
+  post-training (SFT and RL).
+
+\bibitem[Kirchhoffer et~al.(2022)Kirchhoffer, Haase, Samek, M{\"u}ller,
+  Rezazadegan-Tavakoli, Cricri, et~al.]{nnr2022}
+Heiner Kirchhoffer, Paul Haase, Wojciech Samek, Karsten M{\"u}ller, Hamed
+  Rezazadegan-Tavakoli, Francesco Cricri, et~al.
+\newblock Overview of the neural network compression and representation ({NNR})
+  standard.
+\newblock \emph{IEEE Transactions on Circuits and Systems for Video
+  Technology}, 32\penalty0 (5):\penalty0 3203--3216, 2022.
+\newblock \doi{10.1109/TCSVT.2021.3095970}.
+
+\bibitem[Lee et~al.(2024)Lee, Jin, Kim, Kim, and Park]{owq2024}
+Changhun Lee, Jungyu Jin, Taesu Kim, Hyungjun Kim, and Eunhyeok Park.
+\newblock {OWQ}: Outlier-aware weight quantization for efficient fine-tuning
+  and inference of large language models.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence (AAAI)}, 2024.
+
+\bibitem[Lee and Song(2025)]{qpalette2025}
+Deokjae Lee and Hyun~Oh Song.
+\newblock {Q-Palette}: Fractional-bit quantizers toward optimal bit allocation
+  for efficient {LLM} deployment.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2025.
+
+\bibitem[Lee et~al.(2026)Lee, Li, Yin, and Panda]{kronq2026}
+Donghyun Lee, Yuhang Li, Ruokai Yin, and Priyadarshini Panda.
+\newblock {KronQ}: {LLM} quantization via {Kronecker}-factored {Hessian}.
+\newblock In \emph{Conference on Language Modeling (COLM)}, 2026.
+
+\bibitem[Li et~al.(2025)Li, Hanna, Fragouli, and Diggavi]{icquant}
+Xinlin Li, Osama Hanna, Christina Fragouli, and Suhas Diggavi.
+\newblock {ICQuant}: Index coding enables low-bit {LLM} quantization.
+\newblock arXiv:2505.00850, 2025.
+
+\bibitem[Liu et~al.(2024)Liu, Wen, Wang, Ye, Zhang, Cao, Li, and
+  Yang]{liu2024vptq}
+Yifei Liu, Jicheng Wen, Yang Wang, Shengyu Ye, Li~Lyna Zhang, Ting Cao, Cheng
+  Li, and Mao Yang.
+\newblock {VPTQ}: Extreme low-bit vector post-training quantization for large
+  language models.
+\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, 2024.
+
+\bibitem[Ma et~al.(2026)Ma, Wang, Wang, Li, Zhang, Yan, Han, and
+  Yang]{requant2026}
+Yongge Ma, Guoan Wang, Feiyu Wang, Yaoming Li, Qian Zhang, Zihan Yan, Yinjun
+  Han, and Tong Yang.
+\newblock {ReQuant}: Fixed-grid discrete refinement for post-training
+  quantization.
+\newblock arXiv:2608.07019, 2026.
+
+\bibitem[Malinovskii et~al.(2024)Malinovskii, Mazur, Ilin, Kuznedelev,
+  Burlachenko, Yi, Alistarh, and Richt{\'a}rik]{malinovskii2024pvtuning}
+Vladimir Malinovskii, Denis Mazur, Ivan Ilin, Denis Kuznedelev, Konstantin
+  Burlachenko, Kai Yi, Dan Alistarh, and Peter Richt{\'a}rik.
+\newblock {PV-Tuning}: Beyond straight-through estimation for extreme {LLM}
+  compression.
+\newblock arXiv:2405.14852, 2024.
+
+\bibitem[Malinovskii et~al.(2025)Malinovskii, Panferov, Ilin, Guo,
+  Richt{\'a}rik, and Alistarh]{higgs2025}
+Vladimir Malinovskii, Andrei Panferov, Ivan Ilin, Han Guo, Peter Richt{\'a}rik,
+  and Dan Alistarh.
+\newblock {HIGGS}: Pushing the limits of large language model quantization via
+  the linearity theorem.
+\newblock In \emph{Proceedings of the 2025 Conference of the Nations of the
+  Americas Chapter of the Association for Computational Linguistics: Human
+  Language Technologies (Volume 1: Long Papers)}, pages 10857--10886.
+  Association for Computational Linguistics, 2025.
+\newblock \doi{10.18653/v1/2025.naacl-long.543}.
+
+\bibitem[Marcellin and Fischer(1990)]{marcellin1990tcq}
+Michael~W. Marcellin and Thomas~R. Fischer.
+\newblock Trellis coded quantization of memoryless and {Gauss-Markov} sources.
+\newblock \emph{IEEE Transactions on Communications}, 38\penalty0 (1):\penalty0
+  82--93, 1990.
+\newblock \doi{10.1109/26.46532}.
+
+\bibitem[{OpenAI} et~al.(2025){OpenAI}, Agarwal, Ahmad, Ai, Altman, Applebaum,
+  et~al.]{gptoss}
+{OpenAI}, Sandhini Agarwal, Lama Ahmad, Jason Ai, Sam Altman, Andy Applebaum,
+  et~al.
+\newblock gpt-oss-120b \& gpt-oss-20b model card.
+\newblock arXiv:2508.10925, 2025.
+
+\bibitem[Park et~al.(2026)Park, Lee, Piao, and Kim]{park2026vsraq}
+Hancheol Park, Geonho Lee, Tairen Piao, and Tae-Ho Kim.
+\newblock Value-and-structure alignment for routing-consistent quantization of
+  mixture-of-experts models.
+\newblock \emph{arXiv preprint arXiv:2606.05688}, 2026.
+
+\bibitem[Que et~al.(2026)Que, Elkayam, Pyakurel, Pan, and
+  Gope]{que2026xortrellis}
+Xiaofan Que, Nir Elkayam, Spandan Pyakurel, Shuokai Pan, and Dibakar Gope.
+\newblock {XOR-Trellis}: Ultra-low-complexity dequantization and
+  curvature-aware {Hadamard}-free {LLM} quantization.
+\newblock arXiv:2610.00432, 2026.
+
+\bibitem[Rouhani et~al.(2023)Rouhani, Zhao, More, Hall, Khodamoradi, Deng,
+  et~al.]{rouhani2023mx}
+Bita~Darvish Rouhani, Ritchie Zhao, Ankit More, Mathew Hall, Alireza
+  Khodamoradi, Summer Deng, et~al.
+\newblock Microscaling data formats for deep learning.
+\newblock arXiv:2310.10537, 2023.
+
+\bibitem[Shao et~al.(2025)Shao, Wang, Chen, Xu, Wei, and
+  Cheng]{shao2025blockrot}
+Yuantian Shao, Peisong Wang, Yuanteng Chen, Chang Xu, Zhihui Wei, and Jian
+  Cheng.
+\newblock Block rotation is all you need for {MXFP4} quantization.
+\newblock arXiv:2511.04214, 2025.
+
+\bibitem[Tseng et~al.(2024{\natexlab{a}})Tseng, Chee, Sun, Kuleshov, and
+  De~Sa]{tseng2024quipsharp}
+Albert Tseng, Jerry Chee, Qingyao Sun, Volodymyr Kuleshov, and Christopher
+  De~Sa.
+\newblock {QuIP\#}: Even better {LLM} quantization with {Hadamard} incoherence
+  and lattice codebooks.
+\newblock In \emph{International Conference on Machine Learning},
+  2024{\natexlab{a}}.
+
+\bibitem[Tseng et~al.(2024{\natexlab{b}})Tseng, Sun, Hou, and
+  De~Sa]{tseng2024qtip}
+Albert Tseng, Qingyao Sun, David Hou, and Christopher De~Sa.
+\newblock {QTIP}: Quantization with trellises and incoherence processing.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  2024{\natexlab{b}}.
+
+\bibitem[turboderp(2025)]{exllamav3}
+turboderp.
+\newblock {ExLlamaV3}.
+\newblock \url{https://github.com/turboderp-org/exllamav3}, 2025.
+\newblock Software, version 1.5.3.
+
+\bibitem[van Baalen et~al.(2024)van Baalen, Kuzmin, Koryakovskiy, Nagel,
+  Couperus, Bastoul, et~al.]{vanbaalen2024gptvq}
+Mart van Baalen, Andrey Kuzmin, Ivan Koryakovskiy, Markus Nagel, Peter
+  Couperus, Cedric Bastoul, et~al.
+\newblock {GPTVQ}: The blessing of dimensionality for {LLM} quantization.
+\newblock arXiv:2402.15319, 2024.
+
+\bibitem[van~der Ouderaa et~al.(2026)van~der Ouderaa, van Baalen, Whatmough,
+  and Nagel]{llvq2026}
+Tycho F.~A. van~der Ouderaa, Mart van Baalen, Paul Whatmough, and Markus Nagel.
+\newblock Leech lattice vector quantization for efficient {LLM} compression.
+\newblock arXiv:2603.11021, 2026.
+
+\bibitem[{Xiaomi MiMo}(2026)]{mimov25fp4}
+{Xiaomi MiMo}.
+\newblock {MiMo-V2.5-Pro-FP4-DFlash} model card.
+\newblock \url{https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro-FP4-DFlash},
+  2026.
+\newblock MXFP4 MoE experts, FP4 QAT.
+
+\bibitem[Zhao et~al.(2025)Zhao, Shen, Shi, Huang, Chen, Wang,
+  et~al.]{zhao2025deepseek}
+Enbo Zhao, Yi~Shen, Shuming Shi, Jieyun Huang, Zhihao Chen, Ning Wang, et~al.
+\newblock Quantitative analysis of performance drop in {DeepSeek} model
+  quantization.
+\newblock arXiv:2505.02390, 2025.
+
+\bibitem[Zhou et~al.(2025)Zhou, Li, Li, Zhang, Wang, Chang, et~al.]{ccq2025}
+Zhaojing Zhou, Xunchao Li, Minghao Li, Handi Zhang, Haoshuang Wang, Wenbin
+  Chang, et~al.
+\newblock {CCQ}: Convolutional code for extreme low-bit quantization in {LLMs}.
+\newblock arXiv:2507.07145, 2025.
+
+\end{thebibliography}
